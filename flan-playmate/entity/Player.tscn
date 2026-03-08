@@ -23,7 +23,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_birc2")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -49,7 +49,7 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566232744]
 sprite_frames = SubResource("SpriteFrames_maded")
-animation = &"right"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=170117485]
 shape = SubResource("CircleShape2D_glu0s")
@@ -61,8 +61,12 @@ max_hp = 40.0
 [node name="StateMachine" type="StateMachine" parent="." unique_id=1299920099 node_paths=PackedStringArray("current")]
 current = NodePath("Idle")
 
-[node name="Idle" type="NodeState" parent="StateMachine" unique_id=1387493718]
+[node name="Idle" type="NodeState" parent="StateMachine" unique_id=1387493718 node_paths=PackedStringArray("sprite", "entity")]
 script = ExtResource("2_birc2")
+sprite = NodePath("../../AnimatedSprite2D")
+entity = NodePath("../..")
 
-[node name="Move" type="NodeState" parent="StateMachine" unique_id=1717686612]
+[node name="Move" type="NodeState" parent="StateMachine" unique_id=1717686612 node_paths=PackedStringArray("sprite", "entity")]
 script = ExtResource("3_xuay3")
+sprite = NodePath("../../AnimatedSprite2D")
+entity = NodePath("../..")
