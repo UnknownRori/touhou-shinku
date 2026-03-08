@@ -1,0 +1,14 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+compatibility_minimum = 4.1
+reloadable = true
+
+[libraries]
+linux.debug.x86_64 =     "res://../flan_rs/target/debug/libflan_rs.so"
+linux.release.x86_64 =   "res://../flan_rs/target/release/libflan_rs.so"
+windows.debug.x86_64 =   "res://../flan_rs/target/debug/flan_rs.dll"
+windows.release.x86_64 = "res://../flan_rs/target/release/flan_rs.dll"
+macos.debug =            "res://../flan_rs/target/debug/libflan_rs.dylib"
+macos.release =          "res://../flan_rs/target/release/libflan_rs.dylib"
+macos.debug.arm64 =      "res://../flan_rs/target/debug/libflan_rs.dylib"
+macos.release.arm64 =    "res://../flan_rs/target/release/libflan_rs.dylib"
