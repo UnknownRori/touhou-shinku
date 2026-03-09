@@ -3,7 +3,7 @@ use godot::prelude::*;
 
 use crate::FlanExtension;
 use crate::autoload::GameState;
-use crate::components::health_component::HealthComponent;
+use crate::components::HealthComponent;
 
 #[derive(GodotClass)]
 #[class(base=CharacterBody2D)]
@@ -24,6 +24,7 @@ impl ICharacterBody2D for Player {
         if let Some(hp) = &self.hp {
             let hp = hp.clone();
             gm.bind_mut().player_hp = Some(hp);
+            gm.bind_mut().player = Some(self.to_gd().clone());
         }
     }
 }

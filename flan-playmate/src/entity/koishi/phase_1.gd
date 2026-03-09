@@ -1,0 +1,32 @@
+extends NodeState
+
+@export var entity: CharacterBody2D
+@export var bullet_1: BulletSpawnerComponent
+
+@export_group("Attack Information")
+@export var timeout: float
+
+func _process(_delta: float) -> void:
+    entity.move_and_slide()
+
+func _on_enter() -> void:
+    _start_attack()
+
+# INFO: Dummy attack
+func _start_attack():
+    while true:
+        var dir = entity.global_position.direction_to(GameState.get_player_position())
+        spread_times(4, 0.2, 100, dir, 4, 10)
+        await get_tree().create_timer(5.).timeout
+
+func spread_times(time: int, delay: float, speed: float, dir: Vector2, num_side: float, spread_angle: float):
+    for _i in range(0, time):
+        spread(speed, dir, num_side, spread_angle)
+        await get_tree().create_timer(delay).timeout
+        
+func spread(speed: float, dir: Vector2, num_side: float, spread_angle: float):
+    bullet_1.spawn(dir*speed)
+    for i in range(1, num_side + 1):
+        var offset = deg_to_rad(spread_angle * i)
+        bullet_1.spawn(dir.rotated(offset) * speed)
+        bullet_1.spawn(dir.rotated(-offset) * speed)

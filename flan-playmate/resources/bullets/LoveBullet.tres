@@ -3,4 +3,4 @@
 [resource]
 id = "love_bullet"
 texture = Rect2(16, 0, 16, 16)
-collision_circle = 8.0
+collision_circle = 6.0

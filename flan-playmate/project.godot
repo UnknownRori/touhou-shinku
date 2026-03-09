@@ -21,6 +21,13 @@ window/size/viewport_width=256
 window/size/viewport_height=256
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+Player=""
+Enemy=""
+"Player Bullet"=""
+"Enemy Bullet"=""
+
 [input]
 
 up={

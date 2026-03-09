@@ -1,6 +1,5 @@
 [gd_resource type="BulletResource" format=3 uid="uid://b5px0awrju3mi"]
 
 [resource]
-id = "red_bullet"
 texture = Rect2(0, 16, 16, 16)
 collision_circle = 6.0

@@ -1,1 +1,3 @@
-pub mod player;
+mod player;
+
+pub use player::*;

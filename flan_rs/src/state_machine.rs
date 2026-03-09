@@ -28,7 +28,7 @@ impl INode for StateMachine {
     fn ready(&mut self) {
         let child = self.base().get_children();
         for i in child.iter_shared() {
-            let node = i
+            let mut node = i
                 .try_cast::<NodeState>()
                 .expect("StateMachine: Wrong type [it should be NodeState]");
 
@@ -37,6 +37,8 @@ impl INode for StateMachine {
                 .builder()
                 .flags(ConnectFlags::DEFERRED)
                 .connect_other_mut(&*self, Self::transition_to);
+
+            node.bind_mut().on_enter();
 
             let name = node.get_name().to_lower();
             self.lists.set(&name, &node);
