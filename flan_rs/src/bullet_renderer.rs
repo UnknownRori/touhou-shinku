@@ -1,5 +1,5 @@
 use godot::{
-    classes::{IMultiMeshInstance2D, MultiMeshInstance2D, canvas_item::TextureFilter},
+    classes::{IMultiMeshInstance2D, MultiMeshInstance2D},
     prelude::*,
 };
 
@@ -19,7 +19,7 @@ impl IMultiMeshInstance2D for BulletRenderer {
         let mut multimesh = self.base_mut().get_multimesh().unwrap();
         let manager_ptr = self.bullet_manager.clone().unwrap();
         let manager = manager_ptr.bind();
-        multimesh.set_instance_count(manager.get_pool_size() as i32);
+        multimesh.set_instance_count(manager.get_size() as i32);
     }
 
     fn process(&mut self, _dt: f64) {

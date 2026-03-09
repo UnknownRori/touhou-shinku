@@ -11,6 +11,7 @@ pub mod entities;
 pub mod game_inputs;
 pub mod game_state;
 pub mod node_state;
+pub mod pools;
 pub mod state_machine;
 
 struct FlanExtension;
