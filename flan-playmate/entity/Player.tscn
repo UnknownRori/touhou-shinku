@@ -59,8 +59,7 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=170117485]
 shape = SubResource("CircleShape2D_glu0s")
 
-[node name="BulletSpawnerComponent" type="BulletSpawnerComponent" parent="." unique_id=15872827 node_paths=PackedStringArray("entity")]
-entity = NodePath("../AnimatedSprite2D")
+[node name="BulletSpawnerComponent" type="BulletSpawnerComponent" parent="." unique_id=15872827]
 bullet = ExtResource("2_gnrw7")
 
 [node name="HealthComponent" type="HealthComponent" parent="." unique_id=769555914]

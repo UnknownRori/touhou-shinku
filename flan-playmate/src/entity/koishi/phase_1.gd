@@ -25,8 +25,19 @@ func spread_times(time: int, delay: float, speed: float, dir: Vector2, num_side:
         await get_tree().create_timer(delay).timeout
         
 func spread(speed: float, dir: Vector2, num_side: float, spread_angle: float):
-    bullet_1.spawn(dir*speed)
+    var offset_rotation = deg_to_rad(90)
+    bullet_1.spawn(GBullet.create(entity.global_position, dir * speed, dir.angle() + offset_rotation))
     for i in range(1, num_side + 1):
         var offset = deg_to_rad(spread_angle * i)
-        bullet_1.spawn(dir.rotated(offset) * speed)
-        bullet_1.spawn(dir.rotated(-offset) * speed)
+        bullet_1.spawn(GBullet.create(
+                entity.global_position, 
+                dir.rotated(offset) * speed, 
+                dir.angle() + offset_rotation + offset
+            )
+        )
+        bullet_1.spawn(GBullet.create(
+                entity.global_position, 
+                dir.rotated(-offset) * speed, 
+                dir.angle() + offset_rotation + -offset
+            )
+        )

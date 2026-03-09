@@ -1,6 +1,6 @@
 use godot::prelude::*;
 
-use crate::{FlanExtension, autoload::GameState, pools::bullet::*};
+use crate::{FlanExtension, autoload::GameState, components::GBullet, pools::*};
 
 #[derive(GodotClass)]
 #[class(base=Node)]
@@ -43,7 +43,15 @@ impl BulletManager {
     }
 
     #[func]
-    pub fn spawn(&mut self, position: Vector2, velocity: Vector2, texture: Rect2) {
-        self.pool.spawn(position, velocity, texture);
+    pub fn spawn(&mut self, gbullet: Gd<GBullet>) {
+        let bullet = Bullet::new(
+            gbullet.bind().position,
+            gbullet.bind().velocity,
+            gbullet.bind().rotation,
+            gbullet.bind().texture,
+            gbullet.bind().collision.clone(),
+            gbullet.bind().bullet_type.clone(),
+        );
+        self.pool.spawn(bullet);
     }
 }

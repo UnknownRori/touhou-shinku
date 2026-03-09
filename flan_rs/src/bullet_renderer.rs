@@ -35,8 +35,7 @@ impl IMultiMeshInstance2D for BulletRenderer {
                 continue;
             }
 
-            let mut transform = Transform2D::IDENTITY;
-            transform.origin = bullet.position;
+            let transform = Transform2D::from_angle_origin(bullet.rotation, bullet.position);
 
             let uv_offset = bullet.texture.position / texture.get_size();
             let uv_scale = bullet.texture.size / texture.get_size();

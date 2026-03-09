@@ -18,7 +18,7 @@ func _on_process(_dt: float) -> void:
         sprite.play("left")    
     
     if GameInputs.is_attack():
-        basic.spawn(Vector2(0, -100))
+        basic.spawn(GBullet.create(entity.global_position, Vector2(0, -100), 0))
         pass
 
     entity.velocity += dir * accel

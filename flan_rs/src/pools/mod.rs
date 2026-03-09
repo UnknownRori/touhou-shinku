@@ -1,1 +1,3 @@
-pub mod bullet;
+mod bullet;
+
+pub use bullet::*;

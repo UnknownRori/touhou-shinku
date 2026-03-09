@@ -1,11 +1,52 @@
 use godot::prelude::*;
 
+#[derive(GodotConvert, Var, Export, Default, Clone, Debug)]
+#[godot(via = GString)]
+pub enum BulletCollision {
+    Player,
+    #[default]
+    Enemy,
+}
+
+#[derive(GodotConvert, Var, Export, Default, Clone, Debug)]
+#[godot(via = GString)]
+pub enum BulletType {
+    #[default]
+    Default,
+}
+
 #[derive(Default)]
 pub struct Bullet {
     pub position: Vector2,
     pub velocity: Vector2,
+    pub rotation: f32,
     pub texture: Rect2,
+    pub collision: BulletCollision,
+    pub bullet_type: BulletType,
     pub active: bool,
+    pub padding: u128,
+}
+
+impl Bullet {
+    pub fn new(
+        position: Vector2,
+        velocity: Vector2,
+        rotation: f32,
+        texture: Rect2,
+        collision: BulletCollision,
+        bullet_type: BulletType,
+    ) -> Self {
+        Self {
+            position,
+            velocity,
+            rotation,
+            texture,
+            collision,
+            bullet_type,
+            active: true,
+            padding: 0,
+        }
+    }
 }
 
 pub struct BulletPool {
@@ -23,13 +64,9 @@ impl BulletPool {
         Self { items, next_id: 0 }
     }
 
-    pub fn spawn(&mut self, position: Vector2, velocity: Vector2, texture: Rect2) {
+    pub fn spawn(&mut self, out: Bullet) {
         let bullet = &mut self.items[self.next_id as usize];
-
-        bullet.position = position;
-        bullet.velocity = velocity;
-        bullet.texture = texture;
-        bullet.active = true;
+        *bullet = out;
 
         self.next_id = (self.next_id + 1) % self.items.len() as u32;
     }

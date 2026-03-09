@@ -17,9 +17,9 @@ pub struct GameState {
 #[godot_api]
 impl GameState {
     #[func]
-    pub fn spawn_bullet(&mut self, position: Vector2, velocity: Vector2, texture: Rect2) {
+    pub fn spawn_bullet(&mut self, bullet: Gd<GBullet>) {
         let mut bm = self.bullet_manager.clone().unwrap();
-        bm.run_deferred(move |bm| bm.spawn(position, velocity, texture));
+        bm.run_deferred(move |bm| bm.spawn(bullet));
     }
 
     #[func]
