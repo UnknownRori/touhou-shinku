@@ -11,6 +11,7 @@ pub mod components;
 pub mod entities;
 pub mod node_state;
 pub mod pools;
+pub mod resources;
 pub mod state_machine;
 
 struct FlanExtension;

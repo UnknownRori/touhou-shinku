@@ -1,0 +1,6 @@
+[gd_resource type="BulletResource" format=3 uid="uid://blsxw1g5vbw3a"]
+
+[resource]
+id = "love_bullet"
+texture = Rect2(16, 0, 16, 16)
+collision_circle = 8.0

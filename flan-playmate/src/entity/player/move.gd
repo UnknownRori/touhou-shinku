@@ -2,6 +2,7 @@ extends NodeState
 
 @export var sprite: AnimatedSprite2D
 @export var entity: CharacterBody2D
+@export var basic: BulletSpawnerComponent
 
 @export_group("Movement Info")
 @export var accel: float = 50.
@@ -17,6 +18,7 @@ func _on_process(_dt: float) -> void:
         sprite.play("left")    
     
     if GameInputs.is_attack():
+        basic.spawn(Vector2(0, -100))
         pass
 
     entity.velocity += dir * accel
