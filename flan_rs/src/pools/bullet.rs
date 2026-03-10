@@ -16,15 +16,16 @@ pub enum BulletType {
 }
 
 #[derive(Default)]
+#[repr(align(16))]
 pub struct Bullet {
+    pub active: bool,
     pub position: Vector2,
     pub velocity: Vector2,
-    pub rotation: f32,
     pub texture: Rect2,
+    pub rotation: f32,
+    pub radius: f32,
     pub collision: BulletCollision,
     pub bullet_type: BulletType,
-    pub active: bool,
-    pub padding: u128,
 }
 
 impl Bullet {
@@ -32,6 +33,7 @@ impl Bullet {
         position: Vector2,
         velocity: Vector2,
         rotation: f32,
+        radius: f32,
         texture: Rect2,
         collision: BulletCollision,
         bullet_type: BulletType,
@@ -40,11 +42,11 @@ impl Bullet {
             position,
             velocity,
             rotation,
+            radius,
             texture,
             collision,
             bullet_type,
             active: true,
-            padding: 0,
         }
     }
 }

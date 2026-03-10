@@ -11,7 +11,7 @@ func _on_process(_dt: float) -> void:
     GameInputs.update_movement()
     
     if GameInputs.is_attack():
-        basic.spawn(GBullet.create(entity.global_position, Vector2(0, -100), 0))
+        basic.spawn(entity.global_position, Vector2(0, -100), 0)
         pass
     
     entity.velocity *= friction

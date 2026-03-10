@@ -1,6 +1,6 @@
 use godot::prelude::*;
 
-use crate::{bullet_manager::BulletManager, components::*, entities::*};
+use crate::{bullet_manager::BulletManager, components::*, entities::*, pools::*};
 
 #[derive(GodotClass)]
 #[class(init, base=Node)]
@@ -17,9 +17,28 @@ pub struct GameState {
 #[godot_api]
 impl GameState {
     #[func]
-    pub fn spawn_bullet(&mut self, bullet: Gd<GBullet>) {
+    pub fn spawn_bullet(
+        &mut self,
+        position: Vector2,
+        velocity: Vector2,
+        rotation: f32,
+        radius: f32,
+        texture: Rect2,
+        collision: BulletCollision,
+        bullet_type: BulletType,
+    ) {
         let mut bm = self.bullet_manager.clone().unwrap();
-        bm.run_deferred(move |bm| bm.spawn(bullet));
+        bm.run_deferred(move |bm| {
+            bm.spawn(
+                position,
+                velocity,
+                rotation,
+                radius,
+                texture,
+                collision,
+                bullet_type,
+            )
+        });
     }
 
     #[func]
