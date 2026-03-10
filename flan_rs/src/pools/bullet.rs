@@ -1,12 +1,6 @@
 use godot::prelude::*;
 
-#[derive(GodotConvert, Var, Export, Default, Clone, Debug)]
-#[godot(via = GString)]
-pub enum BulletCollision {
-    Player,
-    #[default]
-    Enemy,
-}
+use crate::pools::{Entity, EntityCollision};
 
 #[derive(GodotConvert, Var, Export, Default, Clone, Debug)]
 #[godot(via = GString)]
@@ -24,7 +18,7 @@ pub struct Bullet {
     pub texture: Rect2,
     pub rotation: f32,
     pub radius: f32,
-    pub collision: BulletCollision,
+    pub collision: EntityCollision,
     pub bullet_type: BulletType,
 }
 
@@ -35,7 +29,7 @@ impl Bullet {
         rotation: f32,
         radius: f32,
         texture: Rect2,
-        collision: BulletCollision,
+        collision: EntityCollision,
         bullet_type: BulletType,
     ) -> Self {
         Self {
@@ -53,17 +47,23 @@ impl Bullet {
 
 pub struct BulletPool {
     pub items: Vec<Bullet>,
+    pending_remove: Vec<u32>,
     next_id: u32,
 }
 
 impl BulletPool {
     pub fn new(pool_size: usize) -> Self {
         let mut items = Vec::with_capacity(pool_size);
+        let pending_remove = Vec::with_capacity(pool_size);
         for _ in 0..pool_size {
             items.push(Bullet::default());
         }
 
-        Self { items, next_id: 0 }
+        Self {
+            items,
+            pending_remove,
+            next_id: 0,
+        }
     }
 
     pub fn spawn(&mut self, out: Bullet) {
@@ -79,6 +79,31 @@ impl BulletPool {
                 continue;
             }
             bullet.position += bullet.velocity * dt as f32;
+        }
+    }
+
+    pub fn resolve_collision(&mut self, entities: &Vec<Entity>) {
+        self.pending_remove.clear();
+        for (i, bullet) in &mut self.items.iter().enumerate() {
+            if !bullet.active {
+                continue;
+            }
+            for e in entities {
+                // TODO : Maybe there are better way to check collision
+                if e.collision != bullet.collision {
+                    continue;
+                }
+
+                let dist = e.position.distance_to(bullet.position);
+                if dist <= bullet.radius + e.radius {
+                    self.pending_remove.push(i as u32);
+                }
+            }
+        }
+
+        for i in &self.pending_remove {
+            let item = self.items.get_mut(*i as usize).unwrap();
+            item.active = false;
         }
     }
 }

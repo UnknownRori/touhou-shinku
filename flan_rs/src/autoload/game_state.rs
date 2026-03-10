@@ -24,7 +24,7 @@ impl GameState {
         rotation: f32,
         radius: f32,
         texture: Rect2,
-        collision: BulletCollision,
+        collision: EntityCollision,
         bullet_type: BulletType,
     ) {
         let mut bm = self.bullet_manager.clone().unwrap();
@@ -39,6 +39,12 @@ impl GameState {
                 bullet_type,
             )
         });
+    }
+
+    #[func]
+    pub fn register_entity(&mut self, position: Vector2, radius: f32, collision: EntityCollision) {
+        let mut bm = self.bullet_manager.clone().unwrap();
+        bm.run_deferred(move |bm| bm.add_entity(position, radius, collision));
     }
 
     #[func]

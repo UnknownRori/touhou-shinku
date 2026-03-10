@@ -51,8 +51,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj81h"]
 radius = 4.0
 
-[node name="Player" type="Player" unique_id=2090335859 node_paths=PackedStringArray("hp") groups=["Player"]]
+[node name="Player" type="Player" unique_id=2090335859 node_paths=PackedStringArray("hp", "hitbox") groups=["Player"]]
 hp = NodePath("HealthComponent")
+hitbox = NodePath("HitboxComponent")
 collision_layer = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566232744]
@@ -64,7 +65,9 @@ shape = SubResource("CircleShape2D_glu0s")
 
 [node name="HitboxComponent" type="HitboxComponent" parent="." unique_id=43131582 node_paths=PackedStringArray("parent")]
 parent = NodePath("..")
-radius = 4.0
+radius = 2.0
+collision_layer = 2
+collision_mask = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=152579195]
 shape = SubResource("CircleShape2D_aj81h")

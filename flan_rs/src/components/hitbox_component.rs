@@ -8,9 +8,9 @@ use godot::prelude::*;
 /// so there is radius exported variable
 pub struct HitboxComponent {
     #[export]
-    parent: Option<Gd<Node2D>>,
+    pub parent: Option<Gd<Node2D>>,
     #[export]
-    radius: f64,
+    pub radius: f64,
     base: Base<Area2D>,
 }
 

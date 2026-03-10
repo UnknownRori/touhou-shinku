@@ -6,7 +6,7 @@ use crate::{FlanExtension, autoload::GameState, pools::*, resources::BulletResou
 #[class(init, base=Node)]
 pub struct BulletSpawnerComponent {
     #[export]
-    collision: BulletCollision,
+    target: EntityCollision,
     #[export]
     bullet_type: BulletType,
     #[export]
@@ -23,7 +23,7 @@ impl BulletSpawnerComponent {
         let bl = self.bullet.clone().unwrap();
         let texture = bl.bind().texture;
         let radius = bl.bind().collision_circle as f32;
-        let collision = self.collision.clone();
+        let collision = self.target.clone();
         let bullet_type = self.bullet_type.clone();
         gm.bind_mut().spawn_bullet(
             position,

@@ -45,6 +45,7 @@ shape = SubResource("CircleShape2D_hbinb")
 debug_color = Color(0.9730806, 0, 0.43987608, 0.41960785)
 
 [node name="BulletSpawnerComponent" type="BulletSpawnerComponent" parent="." unique_id=1102358142]
+target = "Player"
 bullet = ExtResource("2_hbinb")
 
 [node name="HealthComponent" type="HealthComponent" parent="." unique_id=2033885468]
@@ -54,7 +55,8 @@ max_hp = 500.0
 [node name="StateMachine" type="StateMachine" parent="." unique_id=775177710 node_paths=PackedStringArray("current")]
 current = NodePath("Phase 1")
 
-[node name="Phase 1" type="NodeState" parent="StateMachine" unique_id=1330746589 node_paths=PackedStringArray("bullet_1")]
+[node name="Phase 1" type="NodeState" parent="StateMachine" unique_id=1330746589 node_paths=PackedStringArray("entity", "bullet_1")]
 script = ExtResource("2_axao5")
+entity = NodePath("../..")
 bullet_1 = NodePath("../../BulletSpawnerComponent")
 timeout = 60.0

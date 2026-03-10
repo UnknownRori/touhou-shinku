@@ -8,6 +8,7 @@ pub struct BulletManager {
     #[export]
     pool_size: i64,
     pool: BulletPool,
+    entities: EntityPool,
     base: Base<Node>,
 }
 
@@ -17,6 +18,7 @@ impl INode for BulletManager {
         let pool_size = 1024 as i64;
         Self {
             pool: BulletPool::new(pool_size as usize),
+            entities: EntityPool::new(pool_size as usize),
             pool_size,
             base,
         }
@@ -29,6 +31,8 @@ impl INode for BulletManager {
 
     fn physics_process(&mut self, dt: f64) {
         self.pool.update(dt);
+        self.pool.resolve_collision(&self.entities.items);
+        self.entities.clear();
     }
 }
 
@@ -50,7 +54,7 @@ impl BulletManager {
         rotation: f32,
         radius: f32,
         texture: Rect2,
-        collision: BulletCollision,
+        collision: EntityCollision,
         bullet_type: BulletType,
     ) {
         let bullet = Bullet::new(
@@ -63,5 +67,11 @@ impl BulletManager {
             bullet_type,
         );
         self.pool.spawn(bullet);
+    }
+
+    #[func]
+    pub fn add_entity(&mut self, position: Vector2, radius: f32, collision: EntityCollision) {
+        self.entities
+            .insert(Entity::new(position, radius, collision));
     }
 }
