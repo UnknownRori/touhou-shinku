@@ -13,6 +13,7 @@ pub enum BulletType {
 #[repr(align(16))]
 pub struct Bullet {
     pub active: bool,
+    pub lifetime: f32,
     pub position: Vector2,
     pub velocity: Vector2,
     pub texture: Rect2,
@@ -35,6 +36,7 @@ impl Bullet {
         Self {
             position,
             velocity,
+            lifetime: 2.,
             rotation,
             radius,
             texture,
@@ -78,7 +80,13 @@ impl BulletPool {
             if !bullet.active {
                 continue;
             }
+            if bullet.lifetime < 0. {
+                bullet.active = false;
+                continue;
+            }
+
             bullet.position += bullet.velocity * dt as f32;
+            bullet.lifetime -= dt as f32;
         }
     }
 
