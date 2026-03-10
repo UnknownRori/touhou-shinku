@@ -48,6 +48,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_glu0s"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_aj81h"]
+radius = 4.0
+
 [node name="Player" type="Player" unique_id=2090335859 node_paths=PackedStringArray("hp") groups=["Player"]]
 hp = NodePath("HealthComponent")
 collision_layer = 2
@@ -58,6 +61,14 @@ animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=170117485]
 shape = SubResource("CircleShape2D_glu0s")
+
+[node name="HitboxComponent" type="HitboxComponent" parent="." unique_id=43131582 node_paths=PackedStringArray("parent")]
+parent = NodePath("..")
+radius = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=152579195]
+shape = SubResource("CircleShape2D_aj81h")
+debug_color = Color(0.96886295, 0, 0.46821105, 0.41960785)
 
 [node name="BulletSpawnerComponent" type="BulletSpawnerComponent" parent="." unique_id=15872827]
 bullet = ExtResource("2_gnrw7")

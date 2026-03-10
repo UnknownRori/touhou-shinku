@@ -21,8 +21,11 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kkp65"]
 
-[node name="Koishi" type="CharacterBody2D" unique_id=141144176 groups=["Enemy"]]
-collision_layer = 4
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbinb"]
+radius = 5.0
+
+[node name="Koishi" type="Enemy" unique_id=2048994200 node_paths=PackedStringArray("hitbox") groups=["Enemy"]]
+hitbox = NodePath("HitboxComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=887965648]
 sprite_frames = SubResource("SpriteFrames_gp81r")
@@ -30,6 +33,16 @@ animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1504326857]
 shape = SubResource("CircleShape2D_kkp65")
+
+[node name="HitboxComponent" type="HitboxComponent" parent="." unique_id=477073166 node_paths=PackedStringArray("parent")]
+parent = NodePath("..")
+radius = 8.0
+collision_layer = 4
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=710155199]
+shape = SubResource("CircleShape2D_hbinb")
+debug_color = Color(0.9730806, 0, 0.43987608, 0.41960785)
 
 [node name="BulletSpawnerComponent" type="BulletSpawnerComponent" parent="." unique_id=1102358142]
 bullet = ExtResource("2_hbinb")
@@ -41,8 +54,7 @@ max_hp = 500.0
 [node name="StateMachine" type="StateMachine" parent="." unique_id=775177710 node_paths=PackedStringArray("current")]
 current = NodePath("Phase 1")
 
-[node name="Phase 1" type="NodeState" parent="StateMachine" unique_id=1330746589 node_paths=PackedStringArray("entity", "bullet_1")]
+[node name="Phase 1" type="NodeState" parent="StateMachine" unique_id=1330746589 node_paths=PackedStringArray("bullet_1")]
 script = ExtResource("2_axao5")
-entity = NodePath("../..")
 bullet_1 = NodePath("../../BulletSpawnerComponent")
 timeout = 60.0
