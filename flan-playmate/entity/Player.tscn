@@ -76,6 +76,12 @@ debug_color = Color(0.96886295, 0, 0.46821105, 0.41960785)
 [node name="BulletSpawnerComponent" type="BulletSpawnerComponent" parent="." unique_id=15872827]
 bullet = ExtResource("2_gnrw7")
 
+[node name="VelocityComponent" type="VelocityComponent" parent="." unique_id=2021631412 node_paths=PackedStringArray("entity")]
+entity = NodePath("..")
+acceleration = 50.0
+max_speed = 150.0
+friction = 0.9
+
 [node name="HealthComponent" type="HealthComponent" parent="." unique_id=769555914]
 current_hp = 40.0
 max_hp = 40.0
@@ -83,17 +89,19 @@ max_hp = 40.0
 [node name="StateMachine" type="StateMachine" parent="." unique_id=1299920099 node_paths=PackedStringArray("current")]
 current = NodePath("Idle")
 
-[node name="Idle" type="NodeState" parent="StateMachine" unique_id=1387493718 node_paths=PackedStringArray("sprite", "entity", "basic")]
+[node name="Idle" type="NodeState" parent="StateMachine" unique_id=1387493718 node_paths=PackedStringArray("sprite", "entity", "basic", "velocity")]
 script = ExtResource("2_birc2")
 sprite = NodePath("../../AnimatedSprite2D")
 entity = NodePath("../..")
 basic = NodePath("../../BulletSpawnerComponent")
+velocity = NodePath("../../VelocityComponent")
 
-[node name="Move" type="NodeState" parent="StateMachine" unique_id=1717686612 node_paths=PackedStringArray("sprite", "entity", "basic")]
+[node name="Move" type="NodeState" parent="StateMachine" unique_id=1717686612 node_paths=PackedStringArray("sprite", "entity", "basic", "velocity")]
 script = ExtResource("3_xuay3")
 sprite = NodePath("../../AnimatedSprite2D")
 entity = NodePath("../..")
 basic = NodePath("../../BulletSpawnerComponent")
+velocity = NodePath("../../VelocityComponent")
 
 [node name="Spell A" type="NodeState" parent="StateMachine" unique_id=1394136622]
 script = ExtResource("5_maded")

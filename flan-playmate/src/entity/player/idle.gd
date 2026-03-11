@@ -3,20 +3,16 @@ extends NodeState
 @export var sprite: AnimatedSprite2D
 @export var entity: CharacterBody2D
 @export var basic: BulletSpawnerComponent
-
-@export_group("Movement Info")
-@export var friction: float = 0.85
+@export var velocity: VelocityComponent
 
 func _on_process(_dt: float) -> void:
     GameInputs.update_movement()
+    velocity.set_dir(Vector2(0, 0))
     
     if GameInputs.is_attack():
         basic.spawn(entity.global_position, Vector2(0, -100), 0)
         pass
     
-    entity.velocity *= friction
-    entity.move_and_slide()
-
 func _on_next_transition() -> void:
     if GameInputs.is_move():
         transition.emit("move")

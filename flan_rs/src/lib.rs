@@ -13,6 +13,7 @@ pub mod node_state;
 pub mod pools;
 pub mod resources;
 pub mod state_machine;
+pub mod utils;
 
 struct FlanExtension;
 

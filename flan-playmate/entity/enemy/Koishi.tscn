@@ -52,6 +52,9 @@ bullet = ExtResource("2_hbinb")
 current_hp = 500.0
 max_hp = 500.0
 
+[node name="VelocityComponent" type="VelocityComponent" parent="." unique_id=1312228563 node_paths=PackedStringArray("entity")]
+entity = NodePath("..")
+
 [node name="StateMachine" type="StateMachine" parent="." unique_id=775177710 node_paths=PackedStringArray("current")]
 current = NodePath("Phase 1")
 
