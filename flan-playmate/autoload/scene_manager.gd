@@ -1,6 +1,6 @@
 extends Node
 
-const FADE_DURATION: float = 1.0
+const FADE_DURATION: float = 0.5
 
 var _overlay: ColorRect
 
