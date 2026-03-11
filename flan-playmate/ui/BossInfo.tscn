@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cnv5l5tujdsoo"]
+
+[ext_resource type="Theme" uid="uid://c160it28u3wq" path="res://assets/themes/default_theme.tres" id="1_a5lu3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gj2r3"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ein7v"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="BossInfo" type="VBoxContainer" unique_id=533481056]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1942701689]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer" unique_id=1342378588]
+layout_mode = 2
+theme = ExtResource("1_a5lu3")
+theme_override_styles/background = SubResource("StyleBoxFlat_gj2r3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ein7v")
+value = 77.0
+rounded = true
+show_percentage = false
+
+[node name="Label" type="Label" parent="." unique_id=436267868]
+layout_mode = 2
+theme = ExtResource("1_a5lu3")
+theme_override_font_sizes/font_size = 10
+text = "Koishi Komeiji"

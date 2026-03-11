@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://bv7rlsnyfo1ah"]
 
 [ext_resource type="PackedScene" uid="uid://8nwxq5in5hhm" path="res://ui/HP.tscn" id="1_1x8ju"]
+[ext_resource type="PackedScene" uid="uid://cnv5l5tujdsoo" path="res://ui/BossInfo.tscn" id="1_aaqae"]
 
 [node name="Hud" type="CanvasLayer" unique_id=1881991769]
+
+[node name="BossInfo" parent="." unique_id=825940027 instance=ExtResource("1_aaqae")]
 
 [node name="Hp" parent="." unique_id=844654883 instance=ExtResource("1_1x8ju")]
 anchors_preset = 12
