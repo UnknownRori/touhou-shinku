@@ -12,6 +12,8 @@ pub struct Enemy {
     hitbox: Option<Gd<HitboxComponent>>,
     #[export]
     hp: Option<Gd<HealthComponent>>,
+    #[export]
+    is_boss: bool,
     base: Base<CharacterBody2D>,
 }
 
@@ -27,6 +29,10 @@ impl ICharacterBody2D for Enemy {
             .builder()
             .flags(ConnectFlags::DEFERRED)
             .connect_other_mut(&*self, Self::hit_info);
+
+        if self.is_boss {
+            gm.bind_mut().boss_hp = self.hp.clone();
+        }
     }
 }
 

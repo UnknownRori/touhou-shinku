@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cnv5l5tujdsoo"]
 
 [ext_resource type="Theme" uid="uid://c160it28u3wq" path="res://assets/themes/default_theme.tres" id="1_a5lu3"]
+[ext_resource type="Script" uid="uid://da4glcw45y64f" path="res://src/ui/boss_info.gd" id="1_gj2r3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gj2r3"]
 border_width_left = 2
@@ -25,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gj2r3")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1942701689]
 layout_mode = 2

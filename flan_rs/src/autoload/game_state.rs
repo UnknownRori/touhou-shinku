@@ -10,6 +10,8 @@ pub struct GameState {
     #[var]
     pub player_hp: Option<Gd<HealthComponent>>,
     #[var]
+    pub boss_hp: Option<Gd<HealthComponent>>,
+    #[var]
     pub bullet_manager: Option<Gd<BulletManager>>,
     base: Base<Node>,
 }

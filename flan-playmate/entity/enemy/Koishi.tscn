@@ -24,8 +24,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_hbinb"]
 radius = 5.0
 
-[node name="Koishi" type="Enemy" unique_id=2048994200 node_paths=PackedStringArray("hitbox") groups=["Enemy"]]
+[node name="Koishi" type="Enemy" unique_id=2048994200 node_paths=PackedStringArray("hitbox", "hp") groups=["Enemy"]]
 hitbox = NodePath("HitboxComponent")
+hp = NodePath("HealthComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=887965648]
 sprite_frames = SubResource("SpriteFrames_gp81r")

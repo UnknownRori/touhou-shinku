@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b13h3o26rij61"]
 
+[ext_resource type="Script" uid="uid://bhh2he8qxg44j" path="res://src/entity/player/player.gd" id="1_815tk"]
 [ext_resource type="Texture2D" uid="uid://cusuqty4nxenx" path="res://assets/textures/flandre.png" id="1_glu0s"]
 [ext_resource type="Script" uid="uid://bk8i66vjeafa2" path="res://src/entity/player/idle.gd" id="2_birc2"]
 [ext_resource type="BulletResource" uid="uid://b5px0awrju3mi" path="res://resources/bullets/RedBullet.tres" id="2_gnrw7"]
@@ -55,6 +56,7 @@ radius = 4.0
 hp = NodePath("HealthComponent")
 hitbox = NodePath("HitboxComponent")
 collision_layer = 2
+script = ExtResource("1_815tk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=566232744]
 sprite_frames = SubResource("SpriteFrames_maded")
@@ -109,3 +111,5 @@ script = ExtResource("5_maded")
 
 [node name="Spell B" type="NodeState" parent="StateMachine" unique_id=1279895063]
 script = ExtResource("6_aj81h")
+
+[connection signal="dead" from="HealthComponent" to="." method="_on_health_component_dead"]

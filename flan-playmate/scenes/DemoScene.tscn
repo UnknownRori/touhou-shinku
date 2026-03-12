@@ -35,6 +35,7 @@ bullet_manager = NodePath("../BulletManager")
 position = Vector2(128, 205)
 
 [node name="Koishi" parent="." unique_id=141144176 instance=ExtResource("4_aoya2")]
+is_boss = true
 position = Vector2(120, 38)
 
 [node name="VerticalBoundary" parent="." unique_id=936517935 instance=ExtResource("6_hbx0r")]
