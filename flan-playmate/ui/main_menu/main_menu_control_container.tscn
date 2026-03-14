@@ -18,6 +18,13 @@ theme_override_font_sizes/font_size = 8
 text = "New Run"
 flat = true
 
+[node name="Button" type="Button" parent="." unique_id=490296135]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+disabled = true
+text = "Option"
+flat = true
+
 [node name="Exit" type="Button" parent="." unique_id=1011604425]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8

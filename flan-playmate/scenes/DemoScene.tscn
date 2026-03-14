@@ -35,9 +35,16 @@ bullet_manager = NodePath("../BulletManager")
 position = Vector2(128, 205)
 
 [node name="Koishi" parent="." unique_id=141144176 instance=ExtResource("4_aoya2")]
-is_boss = true
 position = Vector2(120, 38)
 
 [node name="VerticalBoundary" parent="." unique_id=936517935 instance=ExtResource("6_hbx0r")]
 
 [node name="Hud" parent="." unique_id=1881991769 instance=ExtResource("3_u3y0p")]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1275857379]
+position = Vector2(126, -24)
+amount = 10
+lifetime = 2.0
+speed_scale = 0.4
+emission_shape = 3
+emission_rect_extents = Vector2(128, 4)
