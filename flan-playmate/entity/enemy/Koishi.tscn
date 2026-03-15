@@ -54,8 +54,8 @@ max_hp = 100.0
 [node name="VelocityComponent" type="VelocityComponent" parent="." unique_id=1312228563 node_paths=PackedStringArray("entity")]
 entity = NodePath("..")
 
-[node name="StateMachine" type="StateMachine" parent="." unique_id=775177710 node_paths=PackedStringArray("current")]
-current = NodePath("Opening Attack")
+[node name="StateMachine" type="StateMachine" parent="." unique_id=775177710 node_paths=PackedStringArray("initial")]
+initial = NodePath("Opening Attack")
 
 [node name="Opening Attack" type="NodeState" parent="StateMachine" unique_id=1330746589 node_paths=PackedStringArray("entity", "hp", "bullet_1")]
 script = ExtResource("2_axao5")

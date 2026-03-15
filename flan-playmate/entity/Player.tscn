@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://b6vkibd4qcndj" path="res://src/entity/player/spell_a.gd" id="5_maded"]
 [ext_resource type="Script" uid="uid://dghnyiocacdwu" path="res://src/entity/player/spell_b.gd" id="6_aj81h"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o61f8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_da7gm"]
 resource_local_to_scene = true
 shader = ExtResource("3_dab8s")
 shader_parameter/interpolation = 0.0
@@ -28,7 +28,7 @@ collision_layer = 2
 script = ExtResource("1_815tk")
 
 [node name="SpriteComponent" parent="." unique_id=1587211298 node_paths=PackedStringArray("hp") instance=ExtResource("2_da7gm")]
-material = SubResource("ShaderMaterial_o61f8")
+material = SubResource("ShaderMaterial_da7gm")
 sprite_frames = ExtResource("2_815tk")
 animation = &"idle"
 hp = NodePath("../HealthComponent")
@@ -66,8 +66,8 @@ friction = 0.9
 current_hp = 4.0
 max_hp = 4.0
 
-[node name="StateMachine" type="StateMachine" parent="." unique_id=1299920099 node_paths=PackedStringArray("current")]
-current = NodePath("Idle")
+[node name="StateMachine" type="StateMachine" parent="." unique_id=1299920099 node_paths=PackedStringArray("initial")]
+initial = NodePath("Idle")
 
 [node name="Idle" type="NodeState" parent="StateMachine" unique_id=1387493718 node_paths=PackedStringArray("sprite", "entity", "basic", "velocity", "attack_cooldown")]
 script = ExtResource("2_birc2")

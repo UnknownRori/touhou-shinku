@@ -7,9 +7,10 @@ use crate::node_state::NodeState;
 #[derive(GodotClass)]
 #[class(base=Node)]
 pub struct StateMachine {
-    #[export]
     current: Option<Gd<NodeState>>,
+    #[export]
     initial: Option<Gd<NodeState>>,
+
     lists: VarDictionary,
     base: Base<Node>,
 }
@@ -28,7 +29,7 @@ impl INode for StateMachine {
     fn ready(&mut self) {
         let child = self.base().get_children();
         for i in child.iter_shared() {
-            let mut node = i
+            let node = i
                 .try_cast::<NodeState>()
                 .expect("StateMachine: Wrong type [it should be NodeState]");
 
@@ -38,30 +39,26 @@ impl INode for StateMachine {
                 .flags(ConnectFlags::DEFERRED)
                 .connect_other_mut(&*self, Self::transition_to);
 
-            node.bind_mut().on_enter();
-
             let name = node.get_name().to_lower();
             self.lists.set(&name, &node);
         }
 
         if let Some(initial) = &mut self.initial {
             self.current = Some(initial.clone());
-            let _ = initial
-                .try_call("on_enter", &[])
-                .expect("fail to call on_enter");
+            initial.bind_mut().on_enter();
         }
     }
 
     fn process(&mut self, dt: f64) {
-        if let Some(initial) = &mut self.current {
-            initial.bind_mut().on_process(dt);
+        if let Some(current) = &mut self.current {
+            current.bind_mut().on_process(dt);
         }
     }
 
     fn physics_process(&mut self, dt: f64) {
-        if let Some(initial) = &mut self.current {
-            initial.bind_mut().on_physics_process(dt);
-            initial.bind_mut().on_next_transition();
+        if let Some(current) = &mut self.current {
+            current.bind_mut().on_physics_process(dt);
+            current.bind_mut().on_next_transition();
         }
     }
 }
