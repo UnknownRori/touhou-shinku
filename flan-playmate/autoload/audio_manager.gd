@@ -18,13 +18,13 @@ func _ready() -> void:
 
 func play_sfx(id: String):
     var audio = AudioDatabase.get_item(id)
-    sfx_bus.volume_db = audio.volume
+    sfx_bus.volume_linear = audio.volume
     sfx_bus.stream = audio.src
     sfx_bus.play(0.0)
     
 func play_bgm(id: String):
     var audio = AudioDatabase.get_item(id)
     bgm_bus.stream = audio.src
-    bgm_bus.volume_db = audio.volume
+    sfx_bus.volume_linear = audio.volume
     bgm_bus.playing = true
     bgm_change.emit(audio.name)
