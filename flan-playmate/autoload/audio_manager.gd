@@ -2,6 +2,7 @@ extends Node
 
 var bgm_bus: AudioStreamPlayer
 var sfx_bus: AudioStreamPlayer
+var bgm_name: String
 
 signal bgm_change(name: String)
 
@@ -24,6 +25,7 @@ func play_sfx(id: String):
     
 func play_bgm(id: String):
     var audio = AudioDatabase.get_item(id)
+    bgm_name = audio.name
     bgm_bus.stream = audio.src
     sfx_bus.volume_linear = audio.volume
     bgm_bus.playing = true

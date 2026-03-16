@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cihkpivhaj3uk"]
+
+[ext_resource type="Theme" uid="uid://c160it28u3wq" path="res://assets/themes/default_theme.tres" id="1_wd33e"]
+[ext_resource type="Script" uid="uid://bl0tgg3cbeoy5" path="res://src/ui/music_info.gd" id="2_v1o1q"]
+
+[node name="MusicInfo" type="Control" unique_id=397582787]
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_wd33e")
+script = ExtResource("2_v1o1q")
+
+[node name="Label" type="Label" parent="." unique_id=1749951946]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+offset_right = 52.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Lorem Ipsum"

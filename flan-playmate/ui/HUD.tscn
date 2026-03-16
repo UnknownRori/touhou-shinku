@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://8nwxq5in5hhm" path="res://ui/HP.tscn" id="1_1x8ju"]
 [ext_resource type="PackedScene" uid="uid://cnv5l5tujdsoo" path="res://ui/BossInfo.tscn" id="1_aaqae"]
+[ext_resource type="PackedScene" uid="uid://cihkpivhaj3uk" path="res://ui/MusicInfo.tscn" id="3_jd13s"]
 
 [node name="Hud" type="CanvasLayer" unique_id=1881991769]
 
@@ -13,3 +14,5 @@ offset_top = 16.0
 offset_right = -3.0517578e-05
 offset_bottom = 31.999994
 size_flags_horizontal = 10
+
+[node name="MusicInfo" parent="." unique_id=397582787 instance=ExtResource("3_jd13s")]

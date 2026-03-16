@@ -12,6 +12,7 @@ func _on_enter() -> void:
     hp.set_hp(hp_max)
     hp.set_hp_max(hp_max)
     _start_attack()
+    AudioManager.play_bgm("hartman")
     print("Opening")
 
 # TODO: Make this bullet simple one
