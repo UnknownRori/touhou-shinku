@@ -13,7 +13,6 @@ pub enum BulletType {
 #[repr(align(16))]
 pub struct Bullet {
     pub active: bool,
-    pub lifetime: f32,
     pub position: Vector2,
     pub velocity: Vector2,
     pub texture: Rect2,
@@ -38,7 +37,6 @@ impl Bullet {
         Self {
             position,
             velocity,
-            lifetime: 2.,
             rotation,
             radius,
             texture,
@@ -87,18 +85,17 @@ impl BulletPool {
         self.next_id = (self.next_id + 1) % self.items.len() as u32;
     }
 
-    pub fn update(&mut self, dt: f64) {
+    pub fn update(&mut self, dt: f64, area: Rect2) {
         for bullet in &mut self.items {
             if !bullet.active {
                 continue;
             }
-            if bullet.lifetime < 0. {
+
+            if !area.contains_point(bullet.position) {
                 bullet.active = false;
-                continue;
             }
 
             bullet.position += bullet.velocity * dt as f32;
-            bullet.lifetime -= dt as f32;
         }
     }
 

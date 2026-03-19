@@ -7,6 +7,8 @@ use crate::{FlanExtension, autoload::GameState, pools::*};
 pub struct BulletManager {
     #[export]
     pool_size: i64,
+    #[export]
+    area: Rect2,
     pool: BulletPool,
     entities: EntityPool,
     base: Base<Node>,
@@ -19,6 +21,7 @@ impl INode for BulletManager {
         Self {
             pool: BulletPool::new(pool_size as usize),
             entities: EntityPool::new(pool_size as usize),
+            area: Default::default(),
             pool_size,
             base,
         }
@@ -30,7 +33,7 @@ impl INode for BulletManager {
     }
 
     fn physics_process(&mut self, dt: f64) {
-        self.pool.update(dt);
+        self.pool.update(dt, self.area);
         self.entities.prepare();
         let events = self.pool.resolve_collision(&self.entities.items).clone();
         for e in events {

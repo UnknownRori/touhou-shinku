@@ -65,6 +65,7 @@ tile_map_data = PackedByteArray("AAAEAAkAAAADAAEAAAAEAAoAAAADAAIAAAAFAAkAAAAEAAE
 tile_set = ExtResource("1_f11xd")
 
 [node name="BulletManager" type="BulletManager" parent="." unique_id=1407040143]
+area = Rect2(-32, -32, 288, 288)
 
 [node name="BulletRenderer" parent="." unique_id=926750476 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_0mbge")]
 bullet_manager = NodePath("../BulletManager")
