@@ -25,3 +25,5 @@ func _on_process(_dt: float) -> void:
 func _on_next_transition() -> void:
     if !GameInputs.is_move():
         transition.emit("idle")
+    if GameInputs.is_spell():
+        transition.emit("powered attack")

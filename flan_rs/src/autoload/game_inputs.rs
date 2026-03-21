@@ -54,6 +54,6 @@ impl GameInputs {
 
     #[func]
     fn is_spell(&mut self) -> bool {
-        Input::singleton().is_action_just_pressed("spell")
+        Input::singleton().is_action_pressed("spell")
     }
 }

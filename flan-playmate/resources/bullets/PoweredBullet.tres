@@ -1,0 +1,6 @@
+[gd_resource type="BulletResource" format=3 uid="uid://b04h477ytd5er"]
+
+[resource]
+id = "powered_bullet"
+texture = Rect2(0, 16, 16, 16)
+collision_circle = 6.0

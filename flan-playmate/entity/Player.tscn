@@ -7,10 +7,10 @@
 [ext_resource type="BulletResource" uid="uid://b5px0awrju3mi" path="res://resources/bullets/RedBullet.tres" id="2_gnrw7"]
 [ext_resource type="Shader" uid="uid://3weajlto48cc" path="res://shaders/SpriteComponent.gdshader" id="3_dab8s"]
 [ext_resource type="Script" uid="uid://c8cpgkpcq3emj" path="res://src/entity/player/move.gd" id="3_xuay3"]
+[ext_resource type="BulletResource" uid="uid://b04h477ytd5er" path="res://resources/bullets/PoweredBullet.tres" id="5_da7gm"]
 [ext_resource type="Script" uid="uid://b6vkibd4qcndj" path="res://src/entity/player/spell_a.gd" id="5_maded"]
-[ext_resource type="Script" uid="uid://dghnyiocacdwu" path="res://src/entity/player/spell_b.gd" id="6_aj81h"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_da7gm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vaiil"]
 resource_local_to_scene = true
 shader = ExtResource("3_dab8s")
 shader_parameter/interpolation = 0.0
@@ -28,7 +28,7 @@ collision_layer = 2
 script = ExtResource("1_815tk")
 
 [node name="SpriteComponent" parent="." unique_id=1587211298 node_paths=PackedStringArray("hp") instance=ExtResource("2_da7gm")]
-material = SubResource("ShaderMaterial_da7gm")
+material = SubResource("ShaderMaterial_vaiil")
 sprite_frames = ExtResource("2_815tk")
 animation = &"idle"
 hp = NodePath("../HealthComponent")
@@ -48,11 +48,18 @@ collision_mask = 20
 shape = SubResource("CircleShape2D_aj81h")
 debug_color = Color(0.96886295, 0, 0.46821105, 0.41960785)
 
-[node name="BasicBulletSpawner" type="BulletSpawnerComponent" parent="." unique_id=15872827]
+[node name="PoweredBulletSpawner" type="BulletSpawnerComponent" parent="." unique_id=15872827]
+damage = 8
+bullet = ExtResource("5_da7gm")
+
+[node name="PoweredTimer" type="Timer" parent="PoweredBulletSpawner" unique_id=849011818]
+one_shot = true
+
+[node name="BulletSpawner" type="BulletSpawnerComponent" parent="." unique_id=1728616985]
 damage = 2
 bullet = ExtResource("2_gnrw7")
 
-[node name="BasicTimer" type="Timer" parent="BasicBulletSpawner" unique_id=849011818]
+[node name="BasicTimer" type="Timer" parent="BulletSpawner" unique_id=785007545]
 wait_time = 0.3
 one_shot = true
 
@@ -73,20 +80,22 @@ initial = NodePath("Idle")
 script = ExtResource("2_birc2")
 sprite = NodePath("../../SpriteComponent")
 entity = NodePath("../..")
-basic = NodePath("../../BasicBulletSpawner")
+basic = NodePath("../../BulletSpawner")
 velocity = NodePath("../../VelocityComponent")
-attack_cooldown = NodePath("../../BasicBulletSpawner/BasicTimer")
+attack_cooldown = NodePath("../../BulletSpawner/BasicTimer")
 
 [node name="Move" type="NodeState" parent="StateMachine" unique_id=1717686612 node_paths=PackedStringArray("sprite", "entity", "basic", "velocity", "attack_cooldown")]
 script = ExtResource("3_xuay3")
 sprite = NodePath("../../SpriteComponent")
 entity = NodePath("../..")
-basic = NodePath("../../BasicBulletSpawner")
+basic = NodePath("../../BulletSpawner")
 velocity = NodePath("../../VelocityComponent")
-attack_cooldown = NodePath("../../BasicBulletSpawner/BasicTimer")
+attack_cooldown = NodePath("../../BulletSpawner/BasicTimer")
 
-[node name="Spell A" type="NodeState" parent="StateMachine" unique_id=1394136622]
+[node name="Powered Attack" type="NodeState" parent="StateMachine" unique_id=1394136622 node_paths=PackedStringArray("sprite", "entity", "bullet", "velocity", "attack_cooldown")]
 script = ExtResource("5_maded")
-
-[node name="Spell B" type="NodeState" parent="StateMachine" unique_id=1279895063]
-script = ExtResource("6_aj81h")
+sprite = NodePath("../../SpriteComponent")
+entity = NodePath("../..")
+bullet = NodePath("../../PoweredBulletSpawner")
+velocity = NodePath("../../VelocityComponent")
+attack_cooldown = NodePath("../../PoweredBulletSpawner/PoweredTimer")
