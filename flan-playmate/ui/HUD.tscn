@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cnv5l5tujdsoo" path="res://ui/BossInfo.tscn" id="1_aaqae"]
 [ext_resource type="PackedScene" uid="uid://t3ngxixo11v3" path="res://ui/FPS.tscn" id="1_wxbmk"]
 [ext_resource type="PackedScene" uid="uid://cihkpivhaj3uk" path="res://ui/MusicInfo.tscn" id="3_jd13s"]
+[ext_resource type="PackedScene" uid="uid://ds6i3vjugwvab" path="res://ui/Alert.tscn" id="5_pom5v"]
 
 [node name="Hud" type="CanvasLayer" unique_id=1881991769]
 
@@ -19,3 +20,5 @@ offset_bottom = 31.999994
 size_flags_horizontal = 10
 
 [node name="MusicInfo" parent="." unique_id=397582787 instance=ExtResource("3_jd13s")]
+
+[node name="Alert" parent="." unique_id=60191818 instance=ExtResource("5_pom5v")]

@@ -4,6 +4,9 @@ extends BossAttack
 
 # TODO: Add additional texture for the bullet for variation
 func _start_attack():
+    GameState.show_alert.emit("Spell Card Attack!", 1.)
+    await GameState.done_alert
+
     while !is_done:
         var parent_pos = entity.global_position
         var dir = parent_pos.direction_to(GameState.get_player_position())

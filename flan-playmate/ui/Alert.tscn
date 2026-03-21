@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ds6i3vjugwvab"]
 
 [ext_resource type="Theme" uid="uid://c160it28u3wq" path="res://assets/themes/default_theme.tres" id="1_b4jmv"]
+[ext_resource type="Script" uid="uid://cyah6dfytbdwx" path="res://src/ui/alert.gd" id="2_8pjl6"]
 
 [sub_resource type="Animation" id="Animation_8pjl6"]
 length = 0.001
@@ -14,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(256, 16)]
+"values": [Vector2(256, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -38,7 +39,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(256, 16)]
+"values": [Vector2(256, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -50,7 +51,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 15.445)]
+"values": [Vector2(0, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -62,7 +63,70 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 5.5)]
+"values": [Vector2(-256, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3hx3e"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Top:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(256, 0), Vector2(256, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Top:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.49),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Bottom:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(256, 0), Vector2(256, 16)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-256, 5.5), Vector2(0, 5.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Bottom:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 15.445)]
 }
 
 [sub_resource type="Animation" id="Animation_b4jmv"]
@@ -132,6 +196,7 @@ tracks/4/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8pjl6"]
 _data = {
 &"RESET": SubResource("Animation_8pjl6"),
+&"fade_in": SubResource("Animation_3hx3e"),
 &"fade_out": SubResource("Animation_b4jmv")
 }
 
@@ -149,6 +214,7 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme = ExtResource("1_b4jmv")
+script = ExtResource("2_8pjl6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1206698981]
 libraries/ = SubResource("AnimationLibrary_8pjl6")
@@ -161,14 +227,11 @@ offset_bottom = 32.0
 [node name="Top" type="ColorRect" parent="Control" unique_id=308360993]
 layout_mode = 0
 offset_right = 256.0
-offset_bottom = 16.0
 color = Color(0, 0, 0, 1)
 
 [node name="Bottom" type="ColorRect" parent="Control" unique_id=447512940]
 layout_mode = 0
-offset_top = 15.445
 offset_right = 256.0
-offset_bottom = 31.445
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="Control" unique_id=773746132]
@@ -177,9 +240,10 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = -0.00012207031
-offset_bottom = 10.5
+offset_left = -256.0
+offset_top = -16.0
+offset_right = -256.00006
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Alerta"

@@ -53,14 +53,16 @@ impl GameState {
         bm.run_deferred(move |bm| bm.register(entity));
     }
 
-    //#[func]
-    //pub fn register_entity(&mut self, position: Vector2, radius: f32, collision: EntityCollision) {
-    //    let mut bm = self.bullet_manager.clone().unwrap();
-    //    bm.run_deferred(move |bm| bm.add_entity(position, radius, collision));
-    //}
-
     #[func]
     pub fn get_player_position(&self) -> Vector2 {
         self.player.clone().unwrap().get_global_position()
     }
+
+    // Alert UI stuff
+    // Maybe there is much better way
+    #[signal]
+    pub fn show_alert(text: GString, duration: f64);
+
+    #[signal]
+    pub fn done_alert();
 }
