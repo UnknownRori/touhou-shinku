@@ -5,6 +5,8 @@
 - [Installation](#installation)
 - [Development](#development)
 
+![](./other/screenshot_mainmenu.png)
+
 ## Overview
 
 Touhou: Shinku is an open source **fan-game** set in world of [Touhou Project](https://en.wikipedia.org/wiki/Touhou_Project).
