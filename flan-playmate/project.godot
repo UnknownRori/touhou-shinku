@@ -27,6 +27,8 @@ SceneManager="*uid://7urm0ljwbjbf"
 AudioDatabase="*uid://df0jswdsaevyg"
 AudioManager="*uid://dqiumwbd2j18h"
 BulletHelper="*uid://cb8r740uw57wb"
+LevelDatabase="*uid://bidjy6ahmapjp"
+UpgradeDatabase="*uid://ddidnye22l500"
 
 [display]
 

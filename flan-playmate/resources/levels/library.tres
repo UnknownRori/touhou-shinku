@@ -1,0 +1,8 @@
+[gd_resource type="LevelResource" format=3 uid="uid://cbcsnh6tu4qs3"]
+
+[ext_resource type="PackedScene" uid="uid://dw31kc0gtd37q" path="res://levels/Library.tscn" id="1_qc1l2"]
+
+[resource]
+id = "library"
+name = "Library"
+scene = ExtResource("1_qc1l2")

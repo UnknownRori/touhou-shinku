@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dw31kc0gtd37q"]
+
+[ext_resource type="PackedScene" uid="uid://bv7rlsnyfo1ah" path="res://ui/HUD.tscn" id="1_tfi5t"]
+[ext_resource type="Environment" uid="uid://n33xsjtbyab5" path="res://assets/environments/default_environment.tres" id="1_u376b"]
+[ext_resource type="PackedScene" uid="uid://b13h3o26rij61" path="res://entity/Player.tscn" id="1_xhewo"]
+[ext_resource type="PackedScene" uid="uid://b78bs78oe3y3d" path="res://entity/enemy/Koishi.tscn" id="2_0c7d1"]
+[ext_resource type="PackedScene" uid="uid://2rle0su4iqew" path="res://other/BulletRenderer.tscn" id="2_h4g7f"]
+[ext_resource type="PackedScene" uid="uid://cpueqs51g1mb5" path="res://other/Camera.tscn" id="2_vt21t"]
+[ext_resource type="PackedScene" uid="uid://c0linbo85m6rx" path="res://other/Boundary.tscn" id="3_xhewo"]
+[ext_resource type="PackedScene" uid="uid://dpc6p3c744nvo" path="res://other/PlayerEnter.tscn" id="5_0c7d1"]
+
+[sub_resource type="Animation" id="Animation_h4g7f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(135, 234)]
+}
+
+[sub_resource type="Animation" id="Animation_gpq0t"]
+resource_name = "enter"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(135, 243.975), Vector2(135, 211)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yilpw"]
+_data = {
+&"RESET": SubResource("Animation_h4g7f"),
+&"enter": SubResource("Animation_gpq0t")
+}
+
+[node name="Library" type="WorldEnvironment" unique_id=843190911]
+environment = ExtResource("1_u376b")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=679486585]
+
+[node name="BulletManager" type="BulletManager" parent="." unique_id=100952480]
+area = Rect2(-32, -32, 288, 288)
+
+[node name="BulletRenderer" parent="." unique_id=926750476 node_paths=PackedStringArray("bullet_manager") instance=ExtResource("2_h4g7f")]
+bullet_manager = NodePath("../BulletManager")
+
+[node name="Player" parent="." unique_id=2090335859 instance=ExtResource("1_xhewo")]
+position = Vector2(135, 234)
+
+[node name="Koishi" parent="." unique_id=2048994200 instance=ExtResource("2_0c7d1")]
+position = Vector2(134, 28)
+
+[node name="Hud" parent="." unique_id=1881991769 instance=ExtResource("1_tfi5t")]
+
+[node name="Camera" parent="." unique_id=906702370 instance=ExtResource("2_vt21t")]
+
+[node name="Boundary" parent="." unique_id=936517935 instance=ExtResource("3_xhewo")]
+
+[node name="AnimationPlayer" parent="." unique_id=80904764 node_paths=PackedStringArray("player") instance=ExtResource("5_0c7d1")]
+libraries/ = SubResource("AnimationLibrary_yilpw")
+player = NodePath("../Player")

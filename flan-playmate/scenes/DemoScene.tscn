@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://qqd6vi6kxxtq"]
 
+[ext_resource type="Environment" uid="uid://n33xsjtbyab5" path="res://assets/environments/default_environment.tres" id="1_2j2eg"]
 [ext_resource type="TileSet" uid="uid://dojkuqk2eyog3" path="res://assets/atlas/tilesets.tres" id="1_f11xd"]
 [ext_resource type="PackedScene" uid="uid://b13h3o26rij61" path="res://entity/Player.tscn" id="1_hro3w"]
 [ext_resource type="PackedScene" uid="uid://2rle0su4iqew" path="res://other/BulletRenderer.tscn" id="2_0mbge"]
@@ -8,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://c0linbo85m6rx" path="res://other/Boundary.tscn" id="6_hbx0r"]
 [ext_resource type="PackedScene" uid="uid://cpueqs51g1mb5" path="res://other/Camera.tscn" id="7_lhm80"]
 [ext_resource type="PackedScene" uid="uid://dpc6p3c744nvo" path="res://other/PlayerEnter.tscn" id="8_ja23o"]
-
-[sub_resource type="Environment" id="Environment_te36y"]
 
 [sub_resource type="Animation" id="Animation_2j2eg"]
 length = 0.001
@@ -48,7 +47,7 @@ _data = {
 }
 
 [node name="DemoScene" type="WorldEnvironment" unique_id=1196482247]
-environment = SubResource("Environment_te36y")
+environment = ExtResource("1_2j2eg")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1361393012]
 repeat_size = Vector2(0, 256)
